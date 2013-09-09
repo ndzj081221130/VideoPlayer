@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class LocalFragment extends Fragment {
-	private List<String> _myMusicList = new ArrayList<String>();
+	private List<String> _myMusicList ;
 	private List<MusicData> _musDatas ;
 	private ListView listView;
 	@Override
@@ -28,6 +28,14 @@ public class LocalFragment extends Fragment {
 				R.layout.local);
 	}
 
+//	private 
+	@Override  
+    public void onResume() {  
+        super.onResume();  
+        musicList();
+//        Log.d("Fragment 1", "onResume");  
+    }  
+	
 	private View inflateAndSetupView(LayoutInflater inflater,
 			ViewGroup container, Bundle savedInstanceState, int layoutResourceId) {
 		View layout = inflater.inflate(layoutResourceId, container, false);
@@ -37,6 +45,7 @@ public class LocalFragment extends Fragment {
 	}
 	
 	void musicList() { 
+		_myMusicList = new ArrayList<String>();
 		_musDatas = getMusicFileList();
 		ArrayAdapter<String> musicList = new ArrayAdapter<String>(
 				getActivity(), R.layout.music_item, _myMusicList);
